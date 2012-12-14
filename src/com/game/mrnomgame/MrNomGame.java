@@ -1,6 +1,7 @@
 package com.game.mrnomgame;
 
 import com.game.mrnomgame.framework.Screen;
+import com.game.mrnomgame.framework.impl.AndroidGame;
 
 public class MrNomGame extends AndroidGame {
 	@Override

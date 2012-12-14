@@ -2,13 +2,15 @@ package com.game.mrnomgame;
 
 import java.util.List;
 
+import android.graphics.Color;
+
 import com.game.mrnomgame.framework.Game;
 import com.game.mrnomgame.framework.Graphics;
 import com.game.mrnomgame.framework.Input.TouchEvent;
 import com.game.mrnomgame.framework.Pixmap;
 import com.game.mrnomgame.framework.Screen;
 
-pulibc class GameScreen extends Screen {
+public class GameScreen extends Screen {
 	enum GameState {
 		Ready,
 		Running,
@@ -169,5 +171,90 @@ pulibc class GameScreen extends Screen {
 		Pixmap head_pixmap = null;
 		if (snake.direction == Snake.UP)
 			head_pixmap = Assets.head_up;
+		if (snake.direction == Snake.LEFT)
+			head_pixmap = Assets.head_left;
+		if (snake.direction == Snake.DOWN)
+			head_pixmap = Assets.head_down;
+		if (snake.direction == Snake.RIGHT)
+			head_pixmap = Assets.head_right;
+		
+		g.drawPixmap(head_pixmap,
+					 (head.x * 32 - 16) - head_pixmap.getWidth() / 2,
+					 (head.y * 32 - 16) - head_pixmap.getHeight() / 2);
 	}
+	
+	private void drawReadyUI() {
+		Graphics g = game.getGraphics();
+		
+		g.drawPixmap(Assets.ready, 47, 100);
+		g.drawLine(0, 416, 480, 416, Color.BLACK);
+	}
+	
+	private void drawRunningUI() {
+		Graphics g = game.getGraphics();
+		
+		g.drawPixmap(Assets.buttons, 0, 0, 64, 128, 64, 64);
+		g.drawLine(0, 416, 480, 416, Color.BLACK);
+		g.drawPixmap(Assets.buttons, 0, 416, 64, 64, 64, 64);
+		g.drawPixmap(Assets.buttons, 256, 416, 0, 64, 64, 64);
+	}
+	
+	private void drawPausedUI() {
+		Graphics g = game.getGraphics();
+		
+		g.drawPixmap(Assets.pause, 80, 100);
+		g.drawLine(0, 416, 480, 416, Color.BLACK);	
+	}
+	
+	private void drawGameOverUI() {
+		Graphics g = game.getGraphics();
+		
+		g.drawPixmap(Assets.game_over, 62, 100);
+		g.drawPixmap(Assets.buttons, 128, 200, 0, 128, 64, 64);
+		g.drawLine(0, 416, 480, 418, Color.BLACK);
+	}
+	
+	public void drawText(Graphics g, String line, int x, int y) {
+		int len = line.length();
+		
+		for (int i = 0; i < len; ++i) {
+			char c = line.charAt(i);
+			
+			if (c == ' ') {
+				x += 20;
+				continue;
+			}
+			
+			int src_x = 0;
+			int src_width = 0;
+			if (c == '.') {
+				src_x = 200;
+				src_width = 10;
+			}
+			else {
+				src_x = (c - '0') * 20;
+				src_width = 20;
+			}
+			
+			g.drawPixmap(Assets.numbers, x, y, src_x, 0, src_width, 32);
+			x += src_width;
+		}
+	}
+	
+	@Override
+	public void pause() {
+		if (state == GameState.Running)
+			state = GameState.Paused;
+		
+		if (world.game_over) {
+			Settings.addScore(world.score);
+			Settings.save(game.getFileIO());
+		}
+	}
+	
+	@Override
+	public void resume() {}
+	
+	@Override
+	public void dispose() {}
 }

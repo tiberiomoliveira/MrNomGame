@@ -32,7 +32,7 @@ public class MainMenuScreen extends Screen {
 						Assets.click.play(1);
 				}
 				if (inBounds(event, 64, 220 + 42, 192, 42)) {
-					game.setScreen(new HingscoreScreen(game));
+					game.setScreen(new HighscoreScreen(game));
 					if (Settings.sound_enabled)
 						Assets.click.play(1);
 				}
