@@ -41,7 +41,7 @@ public class AndroidAudio implements Audio {
 			return new AndroidSound(sound_poll, sound_id);
 		}
 		catch (IOException e) {
-			throw new RuntimeException("Couldn't load sound '" + filename +"'");
+			throw new RuntimeException("Couldn't load sound '" + filename + "'");
 		}
 	}
 }

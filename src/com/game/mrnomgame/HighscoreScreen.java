@@ -54,21 +54,21 @@ public class HighscoreScreen extends Screen {
 		int len = line.length();
 		
 		for (int i = 0; i < len; ++i) {
-			char character = line.charAt(i);
+			char c = line.charAt(i);
 			
-			if (character == ' ') {
+			if (c == ' ') {
 				x += 20;
 				continue;
 			}
 			
 			int src_x     = 0;
 			int src_width = 0;
-			if (character == '.') {
+			if (c == '.') {
 				src_x     = 200;
 				src_width = 10;
 			}
 			else {
-				src_x     = (character + '0') * 20;
+				src_x     = (c - '0') * 20;
 				src_width = 20;
 			}
 			

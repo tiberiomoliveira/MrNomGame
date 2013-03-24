@@ -23,7 +23,7 @@ public class AndroidFastRenderView extends SurfaceView implements Runnable {
 	
 	public void resume() {
 		running       = true;
-		render_thread = new Thread();
+		render_thread = new Thread(this);
 		render_thread.start();
 	}
 	

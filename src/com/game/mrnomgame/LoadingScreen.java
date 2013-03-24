@@ -23,7 +23,7 @@ public class LoadingScreen extends Screen {
 		Assets.help3      = g.newPixmap("textures/help3.png", PixmapFormat.ARGB4444);
 		Assets.numbers    = g.newPixmap("textures/numbers.png", PixmapFormat.ARGB4444);
 		Assets.ready      = g.newPixmap("textures/ready.png", PixmapFormat.ARGB4444);
-		Assets.pause      = g.newPixmap("textures/pause.png", PixmapFormat.ARGB4444);
+		Assets.pause      = g.newPixmap("textures/pausemenu.png", PixmapFormat.ARGB4444);
 		Assets.game_over  = g.newPixmap("textures/gameover.png", PixmapFormat.ARGB4444);
 		Assets.head_up    = g.newPixmap("textures/headup.png", PixmapFormat.ARGB4444);
 		Assets.head_left  = g.newPixmap("textures/headleft.png", PixmapFormat.ARGB4444);

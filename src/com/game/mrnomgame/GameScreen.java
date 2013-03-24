@@ -179,8 +179,8 @@ public class GameScreen extends Screen {
 			head_pixmap = Assets.head_right;
 		
 		g.drawPixmap(head_pixmap,
-					 (head.x * 32 - 16) - head_pixmap.getWidth() / 2,
-					 (head.y * 32 - 16) - head_pixmap.getHeight() / 2);
+					 (head.x * 32 + 16) - head_pixmap.getWidth() / 2,
+					 (head.y * 32 + 16) - head_pixmap.getHeight() / 2);
 	}
 	
 	private void drawReadyUI() {
@@ -211,7 +211,7 @@ public class GameScreen extends Screen {
 		
 		g.drawPixmap(Assets.game_over, 62, 100);
 		g.drawPixmap(Assets.buttons, 128, 200, 0, 128, 64, 64);
-		g.drawLine(0, 416, 480, 418, Color.BLACK);
+		g.drawLine(0, 416, 480, 416, Color.BLACK);
 	}
 	
 	public void drawText(Graphics g, String line, int x, int y) {

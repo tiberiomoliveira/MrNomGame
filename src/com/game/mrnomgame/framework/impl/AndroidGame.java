@@ -1,13 +1,10 @@
 package com.game.mrnomgame.framework.impl;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.os.Bundle;
-import android.os.PowerManager;
-import android.os.PowerManager.WakeLock;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -25,7 +22,6 @@ public abstract class AndroidGame extends Activity implements Game {
 	Input                 input;
 	FileIO                file_io;
 	Screen                screen;
-	WakeLock              wake_lock;
 	
 	@SuppressWarnings("deprecation")
 	@Override
@@ -56,16 +52,13 @@ public abstract class AndroidGame extends Activity implements Game {
 		screen      = getStartScreen();
 		
 		setContentView(render_view);
-		
-		wake_lock = ((PowerManager)getSystemService(Context.POWER_SERVICE)).
-					newWakeLock(PowerManager.FULL_WAKE_LOCK, "GlGame");
 	}
 	
 	@Override
 	public void onResume() {
 		super.onRestart();
 		
-		wake_lock.acquire();
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		screen.resume();
 		render_view.resume();
 	}
@@ -74,7 +67,7 @@ public abstract class AndroidGame extends Activity implements Game {
 	public void onPause() {
 		super.onPause();
 		
-		wake_lock.release();
+		getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		render_view.pause();
 		screen.pause();
 		

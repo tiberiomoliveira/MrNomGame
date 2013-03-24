@@ -1,8 +1,7 @@
 <resources>
 
-    <string name="app_name">MrNomGame</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="app_name">Mr. Nom Game</string>
     <string name="menu_settings">Settings</string>
-    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_main">Mr. Nom Game</string>
 
 </resources>
